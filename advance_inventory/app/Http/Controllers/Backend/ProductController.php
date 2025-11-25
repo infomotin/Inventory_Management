@@ -273,5 +273,10 @@ class ProductController extends Controller
         );
         return redirect()->back()->with($notification);
     }
-
+    //DetailsProduct
+    public function DetailsProduct($id)
+    {
+        $product = Product::with('images')->findOrFail($id);
+        return view('admin.backend.product.details_product', compact('product'));
+    }
 }
