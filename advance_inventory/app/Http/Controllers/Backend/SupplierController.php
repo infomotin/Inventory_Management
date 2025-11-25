@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Supplier;
+use App\Models\Customer;
+
 class SupplierController extends Controller
 {
     //AllSupplier
@@ -85,4 +87,40 @@ class SupplierController extends Controller
 
         return redirect()->route('all.supplier')->with($notification);
     }
+    // AllCustomer
+    public function AllCustomer()
+    {
+        $customers = Customer::all();
+        return view('admin.backend.customer.all_customer', compact('customers'));
+    }
+    //AddCustomer
+    public function AddCustomer()
+    {
+        return view('admin.backend.customer.add_customer');
+    }
+    //StoreCustomer
+    public function StoreCustomer(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'required|string|max:20',
+            'address' => 'required|string',
+        ]);
+
+        Customer::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'address' => $request->address,
+        ]);
+        //notification
+        $notification = array(
+            'message' => 'Customer created successfully.',
+            'alert-type' => 'success',
+        );
+
+        return redirect()->route('all.customer')->with($notification);
+    }
+
 }
