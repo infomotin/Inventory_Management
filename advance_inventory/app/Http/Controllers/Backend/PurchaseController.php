@@ -12,6 +12,7 @@ use App\Models\Brand;
 use App\Models\ProductImage;
 use App\Models\WareHouse;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\Purchase;
 use App\Models\PurchaseItem;
 
