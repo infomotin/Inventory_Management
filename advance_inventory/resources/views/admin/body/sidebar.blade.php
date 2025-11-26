@@ -39,6 +39,26 @@
 
                 {{-- @if (Auth::guard('web')->user()->can('brand.menu')) --}}
                 <li>
+                    <a href="#systemSetup" data-bs-toggle="collapse">
+                        <i data-feather="users"></i>
+                        <span> System Setup </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="systemSetup">
+                        <ul class="nav-second-level">
+                            {{-- @if (Auth::guard('web')->user()->can('all.brand')) --}}
+                            <li>
+                                <a href="#" class="tp-link">All Setup</a>
+                            </li>
+                            {{-- @endif --}}
+
+                        </ul>
+                    </div>
+                </li>
+                {{-- @endif --}}
+
+                {{-- @if (Auth::guard('web')->user()->can('brand.menu')) --}}
+                <li>
                     <a href="#sidebarAuth" data-bs-toggle="collapse">
                         <i data-feather="users"></i>
                         <span> Brand Manage </span>
