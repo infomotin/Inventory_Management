@@ -5,12 +5,17 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+
 use App\Models\Brand;
+use Illuminate\Support\Facades\Auth;
 
 class BrandController extends Controller
 {
     //AllBrand
     public function AllBrand(){
+        if(!auth()->user()->hasPermissionTo('all.brand')){
+            abort(403,'You do not have permission to view brands.');
+        }
         $brand = Brand::all();
         return view('admin.backend.brand.all_brand',compact('brand'));
     }
